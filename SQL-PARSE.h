@@ -1,15 +1,15 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <string.h>
+#include <cstring>
 
 using namespace std;
 
 
 void _CREATE (string intrare)
 {
-    char fname[50];
-    // Construct file name here.
-    sprintf(fname, "test/%s", intrare);
-    ofstream ostrm(fname);
+    string Filepath= "test/" + intrare + ".txt";
+    ofstream g(Filepath.c_str());
+    g<<"POPO CACA PIPI";
+    g.close();
 }
