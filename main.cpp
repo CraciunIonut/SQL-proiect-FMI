@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <string.h>
+#include <direct.h>
 
 
 //ifstream f ("Tabel.txt");
@@ -28,32 +29,33 @@ using namespace std;
 int main()
  {
 
-
-
+      mkdir ("test");
   while (1)
 
    {
 
 
-       string commands; //aici bagi create
+       char commands;
 
-       cin>>commands;
+        cin>>commands;
 
-       int ok=1;//
-
-
-       switch (ok)
+       switch (commands)
         {
-         case "create":
+         case 'C':
           //TODO: CREATE va crea ori un tabel ori o baza de date.(creaza un fisier). Acesta va necesita un nume
-          string gol;
+          string nume_fisier;
+          char gol[50];
           cin>>gol;
           cin>>gol;
-          _CREATE(gol);
+          cin>>nume_fisier;
+          cin.get(gol,50);
+          _CREATE(nume_fisier);
 
 
-
+         break;
         }
+
+        break;
 
    }
 
