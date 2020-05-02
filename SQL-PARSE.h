@@ -38,6 +38,32 @@ void _INSERT (string intrare,string tabel[100][100])
 {
     string Filepath= "test/" + intrare + ".txt";
     ofstream g(Filepath.c_str());
+{
+    string Filepath= "test/" + intrare + ".txt";
+    ofstream g(Filepath.c_str());
+     int i=0,j=0;
+     while (cin>>line && line.back()!=';')
+           {
+               tabel[i][j]=line;
+               cin>>line;
+               j++;
+           }
+           for (i=0;i<=j;i++)
+           g<<tabel[0][i]<<" ";
+           g<<"\n";
+           g.close();
+
+
+}
+/*
+citim COMANDA DE LA TASTATURA INSERT apoi stie ca urmeaza into.
+citim numele tabelelui si il deschidem
+printr-un algoritm citim coloanele in care trebuie sa inseram si scoatem virgulele de la ele si dupa aceea printr-un vector ne punem poziitile necesare pentru fiecare coloana.
+*/
+void _INSERT (string intrare,string tabel[100][100])
+{
+    string Filepath= "test/" + intrare + ".txt";
+    ofstream g(Filepath.c_str());
     //INSERT INTO TABEL2 (col1, col2, col3)  for tabel[0][j]==string vector k[i]=j; tabel[1][k[i]];
     // VALUES
     //(bla,bla,bla ),
@@ -165,5 +191,11 @@ void _INSERT (string intrare,string tabel[100][100])
 
     g.close();
     f.close();
+
+
+
+
+
+
 
 }

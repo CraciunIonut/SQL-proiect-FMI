@@ -35,6 +35,7 @@ int main()
  char gol[50];
 
       //mkdir ("test");
+      mkdir ("test");
   while (1)
 
    {
@@ -67,6 +68,8 @@ int main()
           cin.get();
           cin>>nume_fisier;
           _INSERT(nume_fisier, tabel);
+
+          cin.get(gol,50);
          break;
           }
 
