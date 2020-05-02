@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <string.h>
-#include <direct.h>
+//#include <direct.h>
 
 
 //ifstream f ("Tabel.txt");
@@ -29,7 +29,12 @@ using namespace std;
 int main()
  {
 
-      mkdir ("test");
+ string result,line;
+ string tabel[100][100];
+ string nume_fisier;
+ char gol[50];
+
+      //mkdir ("test");
   while (1)
 
    {
@@ -42,23 +47,42 @@ int main()
        switch (commands)
         {
          case 'C':
-          //TODO: CREATE va crea ori un tabel ori o baza de date.(creaza un fisier). Acesta va necesita un nume
-          string nume_fisier;
-          char gol[50];
+          {
+              //TODO: CREATE va crea ori un tabel ori o baza de date.(creaza un fisier). Acesta va necesita un nume
           cin>>gol;
+          cin.get();
           cin>>gol;
+          cin.get();
           cin>>nume_fisier;
           cin.get(gol,50);
-          _CREATE(nume_fisier);
-
-
+          _CREATE(nume_fisier,result,line,tabel);
          break;
+          }
+
+         case 'I':
+          {
+          cin>>gol;
+          cin.get();
+          cin>>gol;
+          cin.get();
+          cin>>nume_fisier;
+          _INSERT(nume_fisier, tabel);
+         break;
+          }
+
         }
 
-        break;
+        if (commands=='E')
+            return 0;
 
    }
 
+   /*string kappa;
+   getline(cin,kappa);
+   kappa.erase(0,1);
+   cout<<kappa<<"\n";
+   cout<<tabel[0][1];
+*/
 
     return 0;
 }
