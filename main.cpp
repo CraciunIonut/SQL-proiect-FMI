@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <string.h>
-#include <direct.h>
+//#include <direct.h>
 
 
 //ifstream f ("Tabel.txt");
@@ -34,6 +34,7 @@ int main()
  string nume_fisier;
  char gol[50];
 
+      //mkdir ("test");
       mkdir ("test");
   while (1)
 
@@ -66,6 +67,8 @@ int main()
           cin>>gol;
           cin.get();
           cin>>nume_fisier;
+          _INSERT(nume_fisier, tabel);
+
           cin.get(gol,50);
          break;
           }
