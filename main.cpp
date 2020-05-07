@@ -4,6 +4,12 @@
 #include <string>
 #include <string.h>
 #include <direct.h>
+#include <iostream>
+#include "SQL.h"
+#include <fstream>
+#include <string>
+#include <string.h>
+//#include <direct.h>
 
 
 //ifstream f ("Tabel.txt");
@@ -27,62 +33,63 @@ using namespace std;
 
 
 int main()
- {
+{
 
- string result,line;
- string tabel[100][100];
- string nume_fisier;
- char gol[50];
+    string line;
+    string tabel[100][100];
+    string nume_fisier;
+    char gol[50];
 
-      mkdir ("test");
-  while (1)
+    //mkdir ("test");
+    while (1)
 
-   {
+    {
 
 
-       char commands;
+        char commands;
 
-        cin>>commands;
+        cin >> commands;
 
-       switch (commands)
+        switch (commands)
         {
-         case 'C':
-          {
-              //TODO: CREATE va crea ori un tabel ori o baza de date.(creaza un fisier). Acesta va necesita un nume
-          cin>>gol;
-          cin.get();
-          cin>>gol;
-          cin.get();
-          cin>>nume_fisier;
-          cin.get(gol,50);
-          _CREATE(nume_fisier,result,line,tabel);
-         break;
-          }
+        case 'C':
+        {
+            //TODO: CREATE va crea ori un tabel ori o baza de date.(creaza un fisier). Acesta va necesita un nume
+            cin >> gol;
+            cin.get();
+            cin >> gol;
+            cin.get();
+            cin >> nume_fisier;
+            cin.get(gol, 50);
+            _CREATE(nume_fisier, line, tabel);
+            break;
+        }
 
-         case 'I':
-          {
-          cin>>gol;
-          cin.get();
-          cin>>gol;
-          cin.get();
-          cin>>nume_fisier;
-          cin.get(gol,50);
-         break;
-          }
+        case 'I':
+        {
+            cin >> gol;
+            cin.get();
+            cin >> gol;
+            cin.get();
+            cin >> nume_fisier;
+            _INSERT(nume_fisier, tabel);
+            //citire(nume_fisier, tabel);
+            break;
+        }
 
         }
 
-        if (commands=='E')
+        if (commands == 'E')
             return 0;
 
-   }
+    }
 
-   /*string kappa;
-   getline(cin,kappa);
-   kappa.erase(0,1);
-   cout<<kappa<<"\n";
-   cout<<tabel[0][1];
-*/
+    /*string kappa;
+    getline(cin,kappa);
+    kappa.erase(0,1);
+    cout<<kappa<<"\n";
+    cout<<tabel[0][1];
+ */
 
     return 0;
 }
