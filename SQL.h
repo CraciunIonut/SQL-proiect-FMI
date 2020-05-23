@@ -72,38 +72,48 @@ void _INSERT(string intrare, string tabel[100][100])
 
     int i_sec = 0, j_sec = 0, coloane = 0;
 
-    while (f >> tabel_secundar[i_sec][j_sec]) {
-        
-        j_sec += 1;
+    string linie_curenta;
+    string word = "";
 
-        if (tabel_secundar[i_sec][j_sec] == "\n") {
-            coloane = j_sec;
-            break;
+    while (getline (f, linie_curenta)){
+
+        for (auto x : linie_curenta)
+        {
+            if (x == ' ')
+            {
+                tabel_secundar[i_sec][j_sec] = word;
+                j_sec++;
+                word ="";
+            }
+            else
+            {
+                word = word + x;
+            }
         }
+        tabel_secundar[i_sec][j_sec] = word;
+        i_sec++;
+        word = "";
+        coloane = j_sec;
+        j_sec = 0;
     }
-
-    i_sec += 1;
-    j_sec = 0;
-
-
-    while (f >> tabel_secundar[i_sec][j_sec]) {
-        j_sec += 1;
-        if (tabel_secundar[i_sec][j_sec] == "") {
-            i_sec += 1;
-            j_sec = 0;
-        }
-    }
-
-    //cout << "OK" << endl;
-
-    for (int i = 0; i < i_sec; i++) {
-        for (int j = 0; j < coloane; j++) {
+/*
+    for (int i = 0; i <= i_sec; i++) {
+        for (int j = 0; j <= coloane; j++) {
             cout << tabel_secundar[i][j] << " ";
         }
         cout << "\n";
     }
+*/    
 
     string comanda;//aici ne luam numele coloanelor si variabilele
+
+    int index = 0;
+
+    for (int i = 0; i <= coloane; i++){
+        vector_aparitii[index] = tabel_secundar[0][i];
+        cout << vector_aparitii[index] << " ";
+        index++;
+    }
 
     cin>>comanda;
 
@@ -111,22 +121,13 @@ void _INSERT(string intrare, string tabel[100][100])
         cin>>comanda;
     }
 
-    int index = 0;
-
-    for (int i = 0; i <= j_sec; i++){
-        vector_aparitii[index] = tabel_secundar[0][index];
-        index++;
-    }
-
-    for (int i = 0; i <= i_sec; i++){
-        for (int j = 0; j <= j_sec; j++){
-            tabel[i][j] = tabel_secundar[i][j];
-        }
-    }
-
     index -= 1;
 
-    while (cin>>comanda && comanda.back()!=')'){
+    //sa imi bag pula daca stiu ce face asta vai de mortii mei
+    //ok mi-am amintit
+    //ne folosim de cacatul asta idiot ca sa stim in ce coloane trebuie sa inseram
+
+    while (cin>>comanda && comanda.back() != ')'){
 
         int i = 0;
 
@@ -144,8 +145,11 @@ void _INSERT(string intrare, string tabel[100][100])
 
     cin>>comanda;
 
-    int contor = i_sec+1;
+    int contor = i_sec;
     int index_vec = 0;
+
+    //aici incercam sa eliminam orice nu este de bagat in tabel
+    //ceva gen ooga booga caveman brain
 
     while (cin>>comanda && comanda.back()!=';'){
 
@@ -186,16 +190,18 @@ void _INSERT(string intrare, string tabel[100][100])
         if (pozitie > 0){
             comanda.erase(pozitie, pozitie+2);
             contor++;
-        }
-
-        if (index_vec < index){
-            tabel[contor][vec[index_vec]] = comanda;
-            index_vec += 1;
-        }
-
-        if (index_vec == index){
-            tabel[contor][vec[index_vec]] = comanda;
             index_vec = 0;
+        }
+
+        //vec[index_vec] este indexul coloanei
+        //contor este indexul liniei
+
+        cout<<"comanda: "<<comanda<<"\n";
+
+        if (index_vec <= index){
+            tabel_secundar[contor][index_vec] = comanda;
+            cout<<"index: "<<index<<" tabel_secundar: "<<tabel_secundar[contor][index_vec]<<" contor: "<<contor<<" index_vec: "<<index_vec<<" vec: "<<vec[index_vec]<<"\n";
+            index_vec += 1;
         }
     }
 
@@ -203,12 +209,16 @@ void _INSERT(string intrare, string tabel[100][100])
 
     for (int i = 0; i <= contor; i++){
         for (int j = 0; j <= index; j++){
-            g<<tabel[i][j]<<" ";
+            g<<tabel_secundar[i][j]<<" ";
         }
         g<<"\n";
     }
     //g.close();
     //f.close();
+
+    //trebuie un if cu o verificare, care sa valideze ca tabelul in care urmeaza sa inserez
+    //exista, aka capetele de tabel din comanda se potrivesc cu cele din fisier
+    //ar mai trebui un if care sa verifice ca ordinea de inserare este cea buna
 
 }
 
