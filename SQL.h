@@ -209,7 +209,7 @@ void _INSERT(string intrare, string tabel[100][100])
 
     for (int i = 0; i <= contor; i++){
         for (int j = 0; j <= index; j++){
-            g<<tabel_secundar[i][j]<<" ";
+            g<<tabel_secundar[i][j]<<" ";   
         }
         g<<"\n";
     }
