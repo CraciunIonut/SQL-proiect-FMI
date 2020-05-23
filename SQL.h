@@ -11,10 +11,7 @@ void citire(string intrare, string tabel[100][100]) {
 
     string Filepath = "test/" + intrare + ".txt";
     ifstream input(Filepath.c_str());
-
-    input >> tabel[0][0];
-    cout << tabel[0][0];
-    /*
+    
         int i_sec = 0, j_sec = 0, coloane = 0;
 
         while (input>>tabel[i_sec][j_sec]){
@@ -25,7 +22,7 @@ void citire(string intrare, string tabel[100][100]) {
                 break;
             }
         }
-    */
+    
 }
 
 
@@ -56,6 +53,7 @@ citim COMANDA DE LA TASTATURA INSERT apoi stie ca urmeaza into.
 citim numele tabelelui si il deschidem
 printr-un algoritm citim coloanele in care trebuie sa inseram si scoatem virgulele de la ele si dupa aceea printr-un vector ne punem poziitile necesare pentru fiecare coloana.
 */
+
 void _INSERT(string intrare, string tabel[100][100])
 {
     string Filepath = "test/" + intrare + ".txt";
@@ -75,6 +73,7 @@ void _INSERT(string intrare, string tabel[100][100])
     int i_sec = 0, j_sec = 0, coloane = 0;
 
     while (f >> tabel_secundar[i_sec][j_sec]) {
+        
         j_sec += 1;
 
         if (tabel_secundar[i_sec][j_sec] == "\n") {
@@ -86,27 +85,23 @@ void _INSERT(string intrare, string tabel[100][100])
     i_sec += 1;
     j_sec = 0;
 
+
     while (f >> tabel_secundar[i_sec][j_sec]) {
         j_sec += 1;
-        if (tabel_secundar[i_sec][j_sec] == "\n") {
+        if (tabel_secundar[i_sec][j_sec] == "") {
             i_sec += 1;
             j_sec = 0;
         }
     }
 
-    cout << "OK" << endl;
-
+    //cout << "OK" << endl;
 
     for (int i = 0; i < i_sec; i++) {
         for (int j = 0; j < coloane; j++) {
             cout << tabel_secundar[i][j] << " ";
         }
-        cout << endl;
+        cout << "\n";
     }
-
-
-
-    /*
 
     string comanda;//aici ne luam numele coloanelor si variabilele
 
@@ -171,7 +166,7 @@ void _INSERT(string intrare, string tabel[100][100])
         pozitie = comanda.find("'");
 
         if (pozitie > 0){
-            comanda.erase(pozitie,pozitie+1);
+            comanda.erase(pozitie, pozitie+1);
         }
 
         pozitie = comanda.find("',");
@@ -204,16 +199,17 @@ void _INSERT(string intrare, string tabel[100][100])
         }
     }
 
+    ofstream g(Filepath.c_str());
+
     for (int i = 0; i <= contor; i++){
         for (int j = 0; j <= index; j++){
             g<<tabel[i][j]<<" ";
         }
         g<<"\n";
     }
-
-    */
-
     //g.close();
-    f.close();
+    //f.close();
 
 }
+
+
