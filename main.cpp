@@ -49,7 +49,7 @@ int main()
         {
         case 'C':
         {
-            //TODO: CREATE va crea ori un tabel ori o baza de date.(creaza un fisier). Acesta va necesita un nume
+            //functia create va creea un tabel si il va salva sub forma de fisier text
             cin >> gol;
             cin.get();
             cin >> gol;
@@ -62,13 +62,13 @@ int main()
 
         case 'I':
         {
+            //functia insert insereaza in tabel date
             cin >> gol;
             cin.get();
             cin >> gol;
             cin.get();
             cin >> nume_fisier;
             _INSERT(nume_fisier, tabel);
-            //citire(nume_fisier, tabel);
             break;
         }
 

@@ -123,9 +123,11 @@ void _INSERT(string intrare, string tabel[100][100])
 
     index -= 1;
 
-    //sa imi bag pula daca stiu ce face asta vai de mortii mei
-    //ok mi-am amintit
-    //ne folosim de cacatul asta idiot ca sa stim in ce coloane trebuie sa inseram
+    //ne folosim de asta ca sa stim in ce coloane trebuie sa inseram
+    //UPDATE: Nu il mai folosim deloc momentan, dar l-am lasat aici in caz ca
+    //        poate reusim sa il reparam sau poate ne trebuie in alta parte
+    //        Acum e doar pe post de citire in gol pentru numele coloanelor din insert,
+    //        deci tot e oarecum util.
 
     while (cin>>comanda && comanda.back() != ')'){
 
@@ -146,7 +148,9 @@ void _INSERT(string intrare, string tabel[100][100])
     cin>>comanda;
 
     int contor = i_sec;
+
     int index_vec = 0;
+    
 
     //aici incercam sa eliminam orice nu este de bagat in tabel
     //ceva gen ooga booga caveman brain
@@ -181,19 +185,27 @@ void _INSERT(string intrare, string tabel[100][100])
 
         pozitie = comanda.find(",");
 
-        if (pozitie > 0){
+        // if (pozitie > 0){
+        //     comanda.erase(pozitie, pozitie+1);
+        // }
+
+        //teoretic daca s-a ajuns in aceasta situatie inseamna ca se introduc mai multe
+        //date in aceeasi secventa de insert
+        //momentan nu functioneaza
+        //TODO: de reparat mai multe introduceri de campuri in acelasi insert
+        //UPDATE: Am reparat, doar ca pentru campurile care urmeaza dupa primul
+        //        pune un spatiu inainte. Din ce am vazut momentan nu afecteaza
+        //        functionalitatea ulterioara a programului, probabil de undeva de la scriere
+
+        if (pozitie > 0 && comanda.at(pozitie-1) == ')') {
+            comanda.erase(pozitie-1, pozitie+1);
+            contor++;
+            index_vec = 0;
+        } else if (pozitie > 0 && comanda.at(pozitie-1) != ')'){
             comanda.erase(pozitie, pozitie+1);
         }
 
-        pozitie = comanda.find("),");
-
-        if (pozitie > 0){
-            comanda.erase(pozitie, pozitie+2);
-            contor++;
-            index_vec = 0;
-        }
-
-        //vec[index_vec] este indexul coloanei
+        //index_vec este indexul coloanei
         //contor este indexul liniei
 
         cout<<"comanda: "<<comanda<<"\n";
@@ -203,6 +215,8 @@ void _INSERT(string intrare, string tabel[100][100])
             cout<<"index: "<<index<<" tabel_secundar: "<<tabel_secundar[contor][index_vec]<<" contor: "<<contor<<" index_vec: "<<index_vec<<" vec: "<<vec[index_vec]<<"\n";
             index_vec += 1;
         }
+
+        
     }
 
     ofstream g(Filepath.c_str());
