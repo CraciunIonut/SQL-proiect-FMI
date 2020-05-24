@@ -72,6 +72,20 @@ int main()
             break;
         }
 
+        case 'D':
+        {
+            //functia delete va avea doua proprietati, ori va sterge toate datele din
+            //tabel, lasandu-l gol, ori va sterge un rand care indeplineste o conditie
+
+            cin >> gol; 
+            cin.get();
+            cin >> gol;
+            cin.get();
+            cin >> nume_fisier;
+            _DELETE(nume_fisier, tabel);
+            break;
+        }
+
         }
 
         if (commands == 'E')

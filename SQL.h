@@ -236,4 +236,134 @@ void _INSERT(string intrare, string tabel[100][100])
 
 }
 
+//pentru DELETE exista DELETE FROM nume WHERE conditie; unde se sterge doar randul care
+//indeplineste conditia respectiva, de exemplu DELETE FROM test WHERE nume = 'Alexandru'.
+
+//avem si DELETE FROM nume; unde se vor sterge toate informatiile din tabel, dar el in sine
+//va ramane ca un fisier, impreuna cu capetele acestuia.
+
+void _DELETE (string intrare, string tabel[100][100]){
+
+    bool ok = false; //folosim un ok ca sa ne dam seama daca stergem tot tabelul sau doar
+                     //o singura linie
+
+    if (intrare.back() == ';'){
+        intrare.erase(intrare.end()-1, intrare.end());
+        ok = true;
+    }
+
+    string Filepath = "test/" + intrare + ".txt";
+
+    ifstream f(Filepath.c_str());
+
+    //citirea intr-o matrice secundara este copy-paste de la insert
+
+    int i_sec = 0, j_sec = 0, coloane = 0;
+
+    string linie_curenta;
+    string word = "";
+    string tabel_secundar[100][100];
+
+    while (getline (f, linie_curenta)){
+
+        for (auto x : linie_curenta)
+        {
+            if (x == ' ')
+            {
+                tabel_secundar[i_sec][j_sec] = word;
+                j_sec++;
+                word ="";
+            }
+            else
+            {
+                word = word + x;
+            }
+        }
+        tabel_secundar[i_sec][j_sec] = word;
+        i_sec++;
+        word = "";
+        coloane = j_sec;
+        j_sec = 0;
+    }
+/*
+    for (int i = 0; i <= i_sec; i++) {
+        for (int j = 0; j <= coloane; j++) {
+            cout << tabel_secundar[i][j] << " ";
+        }
+        cout << "\n";
+    }
+*/
+
+    //prima oara tratam cazul in care ok = true, aka stergem toata matricea,
+    //lasand doar capetele de tabel
+
+    if (ok){
+
+        ofstream g(Filepath.c_str());
+
+        for (int i = 0; i < coloane; i++){
+            g << tabel_secundar[0][i] << " ";
+        }
+
+    } else {
+        //aici vom trata cazul in care trebuie stearsa o linie sau mai multe, 
+        //care indeplinesc conditia specificata in comanda
+        //din fericire nu se pot pune mai multe conditii (god bless...)
+
+        char gol[50];
+        string comanda;
+
+        cin >> gol;
+        cin.get();
+
+        cin >> comanda;
+
+        int pozitie = -1;
+
+        //pozitia ghilimelei se aplica doar daca vom cauta o variabila salvata ca "char"
+        
+        pozitie = comanda.find("'");
+
+        if (pozitie > 0){
+
+            comanda.erase(0, pozitie+1);
+            pozitie = comanda.find("'");
+            comanda.erase(pozitie, pozitie+1);
+
+        } else {
+
+            //daca vom cauta un "int" se va realiza o cautare dupa egal
+
+            pozitie = comanda.find("=");
+            comanda.erase(0, pozitie+1);
+            pozitie = comanda.find(";");
+            comanda.erase(pozitie, pozitie+1);
+        }
+
+        ofstream g(Filepath.c_str());
+
+        bool confirmare = false; //folosim acest boolean ca sa confirmam ca exita conditia
+                                //pe randul curent
+
+        for (int i = 0; i < i_sec; i++){
+
+            for (int j = 0; j <= coloane; j++){
+                if (tabel_secundar[i][j] == comanda){
+                    confirmare = true;
+                }
+            }
+            
+            //daca conditia nu exista, aka nu trebuie sters randul, acesta este scris in fisier
+            if (!confirmare){
+                for (int j = 0; j <= coloane; j++){
+                    g << tabel_secundar[i][j] << " ";
+                }
+                g << "\n";
+            }
+
+            confirmare = false;
+        }
+    }
+}
+
 
