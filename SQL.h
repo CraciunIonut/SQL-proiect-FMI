@@ -112,7 +112,7 @@ void _INSERT(string intrare, string tabel[100][100],string database_name)
 
 	for (int i = 0; i <= coloane; i++) {
 		vector_aparitii[index] = tabel_secundar[0][i];
-		cout << vector_aparitii[index] << " ";
+		//cout << vector_aparitii[index] << " ";
 		index++;
 	}
 
@@ -201,7 +201,7 @@ void _INSERT(string intrare, string tabel[100][100],string database_name)
 		if (pozitie > 0 && comanda.at(pozitie - 1) == ')') {
 			comanda.erase(pozitie - 1, pozitie + 1);
 			contor++;
-			index_vec = 0;
+			index_vec = -1;
 		}
 		else if (pozitie > 0 && comanda.at(pozitie - 1) != ')') {
 			comanda.erase(pozitie, pozitie + 1);
