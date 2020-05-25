@@ -2,7 +2,8 @@
 
 #include <iostream>
 #include <string>
-#include <direct.h>
+//#include <direct.h>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ void _create_database()// functie pentru a crea directorul cu numele selectat de
 {
 	string database_name;
 	cin >> database_name;
-	_mkdir(database_name.c_str());
+	mkdir(database_name.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 }
 
 
