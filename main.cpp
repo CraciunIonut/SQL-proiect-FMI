@@ -13,6 +13,7 @@
 #include "Database.h"
 #include <unistd.h>
 #include <sys/stat.h>
+//#include "UPDATE.h"
 
 //ifstream f ("Tabel.txt");
 //ofstream g ("Tabel.txt");
@@ -69,8 +70,8 @@ int main()
 			}
 			else {
 				cin >> nume_fisier;
-				cin.get(gol, 50);
-				_CREATE(nume_fisier, line, tabel,database_name);
+				cin.get();
+				_CREATE(nume_fisier, line, tabel, database_name);
 			}
 			break;
 		}
@@ -84,7 +85,7 @@ int main()
 			cin.get();
 			cin >> nume_fisier;
 			cout << "Inserati in tabelul " << nume_fisier << "\n";
-			_INSERT(nume_fisier, tabel,database_name);
+			_INSERT(nume_fisier, tabel, database_name);
 			break;
 		}
 
@@ -123,7 +124,7 @@ int main()
 			cin >> gol;
 			cin.get();
 			cin >> nume_fisier;
-			_UPDATE (nume_fisier, tabel, database_name);
+			//_UPDATE (nume_fisier, tabel, database_name);
 		}
 
 
