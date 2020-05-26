@@ -13,6 +13,7 @@
 #include "Database.h"
 #include <unistd.h>
 #include <sys/stat.h>
+#include "UPDATE.h"
 
 //ifstream f ("Tabel.txt");
 //ofstream g ("Tabel.txt");
@@ -48,6 +49,8 @@ int main()
 
 	{
 
+		cout << "Meniu principal" << "\n";
+
 		char commands;
 
 		cin >> commands;
@@ -67,8 +70,8 @@ int main()
 			}
 			else {
 				cin >> nume_fisier;
-				cin.get(gol, 50);
-				_CREATE(nume_fisier, line, tabel,database_name);
+				cin.get();
+				_CREATE(nume_fisier, line, tabel, database_name);
 			}
 			break;
 		}
@@ -81,7 +84,8 @@ int main()
 			cin >> gol;
 			cin.get();
 			cin >> nume_fisier;
-			_INSERT(nume_fisier, tabel,database_name);
+			cout << "Inserati in tabelul " << nume_fisier << "\n";
+			_INSERT(nume_fisier, tabel, database_name);
 			break;
 		}
 
@@ -108,7 +112,21 @@ int main()
 			cin >> database_table;
 			cin.get();
 			database_name = _select_database();
+			cout << "Momentan lucrati in baza de date " << database_name << "\n";
+			break;
 
+		}
+
+		case 'U':
+		{
+			//functia update va pune informatiile pasate de la tastatura
+			//in locul informatiilor deja prezente in tabel
+
+			cin >> gol;
+			cin.get();
+			cin >> nume_fisier;
+			_UPDATE (nume_fisier, tabel, database_name);
+			break;
 		}
 
 

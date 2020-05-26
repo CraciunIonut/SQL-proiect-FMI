@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -35,6 +35,8 @@ void _CREATE(string intrare, string line, string tabel[100][100],string database
 	string Filepath = database_name +"/" + intrare + ".txt";
 	ofstream g(Filepath.c_str());
 	int i = 0, j = 0;
+	char gol[50];
+	cin >> gol;
 	while (cin >> line && line.back() != ';')
 	{
 		tabel[i][j] = line;
@@ -52,7 +54,8 @@ void _CREATE(string intrare, string line, string tabel[100][100],string database
 /*
 citim COMANDA DE LA TASTATURA INSERT apoi stie ca urmeaza into.
 citim numele tabelelui si il deschidem
-printr-un algoritm citim coloanele in care trebuie sa inseram si scoatem virgulele de la ele si dupa aceea printr-un vector ne punem poziitile necesare pentru fiecare coloana.
+printr-un algoritm citim coloanele in care trebuie sa inseram si scoatem virgulele de la ele 
+si dupa aceea printr-un vector ne punem poziitile necesare pentru fiecare coloana.
 */
 
 void _INSERT(string intrare, string tabel[100][100],string database_name)
@@ -244,7 +247,7 @@ void _INSERT(string intrare, string tabel[100][100],string database_name)
 //avem si DELETE FROM nume; unde se vor sterge toate informatiile din tabel, dar el in sine
 //va ramane ca un fisier, impreuna cu capetele acestuia.
 
-void _DELETE(string intrare, string tabel[100][100], string database_name) {
+void _DELETE (string intrare, string tabel[100][100], string database_name) {
 
 	bool ok = false; //folosim un ok ca sa ne dam seama daca stergem tot tabelul sau doar
 					 //o singura linie
