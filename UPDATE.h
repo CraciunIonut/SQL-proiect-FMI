@@ -50,14 +50,14 @@ void _UPDATE (string intrare, string tabel[100][100], string database_name) {
         coloane = j_sec;
         j_sec = 0;
     }
-/*  
-    for (int i = 0; i <= i_sec; i++) {
-        for (int j = 0; j <= coloane; j++) {
-            cout << tabel_secundar[i][j] << " ";
-        }
-        cout << "\n";
-    }
-*/
+  
+    // for (int i = 0; i <= i_sec; i++) {
+    //     for (int j = 0; j <= coloane; j++) {
+    //         cout << tabel_secundar[i][j] << " ";
+    //     }
+    //     cout << "\n";
+    // }
+
 
     char gol[50];
     string variabila_noua;//aici citim valoarea care o va inlocui pe cea veche
@@ -268,6 +268,7 @@ void _UPDATE (string intrare, string tabel[100][100], string database_name) {
     }
 
     for (int i = 0; i < i_sec; i++){
+        // cout << tabel_secundar[i][j_conditie] << " ";
         if (tabel_secundar[i][j_conditie] == conditie){
             i_conditie = i;
             break;
@@ -279,6 +280,10 @@ void _UPDATE (string intrare, string tabel[100][100], string database_name) {
     //din statement-ul set
 
     //verificam daca s-a gasit conditia 
+
+    // cout << "Conditia este " << conditie << "\n";
+    // cout << "Conditia trebuie sa fie " << tabel_secundar[i_conditie][j_conditie] << "\n";
+    // cout << "i_cond: " << i_conditie << ", j_cond: " << j_conditie;
 
     if (tabel_secundar[i_conditie][j_conditie] == conditie){
 

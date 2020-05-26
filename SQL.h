@@ -32,16 +32,15 @@ void citire(string intrare, string tabel[100][100]) {
 //  Pune coloanele care trebuiesc si le tine minte intr-o matrice.
 void _CREATE(string intrare, string line, string tabel[100][100],string database_name)
 {
-	cout << "A INTRAT IN CREATE \n";
 	string Filepath = database_name +"/" + intrare + ".txt";
 	ofstream g(Filepath.c_str());
 	int i = 0, j = 0;
+	char gol[50];
+	cin >> gol;
 	while (cin >> line && line.back() != ';')
 	{
-		cout << line;
 		tabel[i][j] = line;
 		cin >> line;
-		cout << line;
 		j++;
 	}
 	for (i = 0; i < j; i++)

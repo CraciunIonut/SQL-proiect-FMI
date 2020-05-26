@@ -13,7 +13,7 @@
 #include "Database.h"
 #include <unistd.h>
 #include <sys/stat.h>
-//#include "UPDATE.h"
+#include "UPDATE.h"
 
 //ifstream f ("Tabel.txt");
 //ofstream g ("Tabel.txt");
@@ -113,6 +113,7 @@ int main()
 			cin.get();
 			database_name = _select_database();
 			cout << "Momentan lucrati in baza de date " << database_name << "\n";
+			break;
 
 		}
 
@@ -124,7 +125,8 @@ int main()
 			cin >> gol;
 			cin.get();
 			cin >> nume_fisier;
-			//_UPDATE (nume_fisier, tabel, database_name);
+			_UPDATE (nume_fisier, tabel, database_name);
+			break;
 		}
 
 
